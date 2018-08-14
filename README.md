@@ -40,6 +40,6 @@ cd superlists/
 
 python manage.py runserver
 
-- Test
+- Testl
 
 python functional_test.py
