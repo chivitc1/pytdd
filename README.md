@@ -43,3 +43,11 @@ python manage.py runserver
 - Testl
 
 python functional_test.py
+
+- Create new app lists in project superlists
+
+python manage.py startapp lists
+
+- Run unit tests
+
+python manage.py test
