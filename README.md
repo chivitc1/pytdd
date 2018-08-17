@@ -86,3 +86,13 @@ python manage.py test
 (2) Which test failing, is it our expected?
 
 (3) Look for the code kickoff the failure - a function
+
+- Migration db update each time model updated
+
+Create migration config:
+
+python manage.py makemigrations
+
+Run migration:
+
+python manage.py migrate
