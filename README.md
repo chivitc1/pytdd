@@ -96,3 +96,9 @@ python manage.py makemigrations
 Run migration:
 
 python manage.py migrate
+
+# test commands for functional & unit test
+
+python manage.py test functional_tests
+
+python manage.py test <<app_name>>
