@@ -25,7 +25,7 @@ SECRET_KEY = 't!v7773u_d1q(vbs(l^&+%__oqt*q_9dp+-_b89))g7sdx)4**'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['superlists.staging.chivitc.tk']
 
 
 # Application definition
