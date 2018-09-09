@@ -102,3 +102,10 @@ python manage.py migrate
 python manage.py test functional_tests
 
 python manage.py test <<app_name>>
+
+# test with staging server
+$ STAGING_SERVER=superlists.staging.chivitc.tk python manage.py test functional_tests/
+
+# Deploy using Fabric
+$ cd deploy/
+$ fab deploy:host=superlists.staging.chivitc.tk
