@@ -54,7 +54,7 @@ class ListViewTest(TestCase):
         Item.objects.create(text='Other list item 1', list=other_list)
         Item.objects.create(text='Other list item 2', list=other_list)
 
-        response = self.client.get(f'/lists/{correct_list.id}/')
+        response = self.client.get('/lists/%s/' % (correct_list.id,))
 
         self.assertContains(response, 'Item 1')
         self.assertContains(response, 'Item 2')
@@ -66,7 +66,7 @@ class ListViewTest(TestCase):
         Item.objects.create(text='Item 1', list=list_)
         Item.objects.create(text='Item 2', list=list_)
 
-        response = self.client.get(f'/lists/{list_.id}/')
+        response = self.client.get('/lists/%s/' % (list_.id,))
         self.assertContains(response, 'Item 1')
         self.assertContains(response, 'Item 2')
 
@@ -83,14 +83,14 @@ class NewListTest(TestCase):
     def test_redirect_after_a_POST(self):
         response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
         new_list = List.objects.first()
-        self.assertRedirects(response, f'/lists/{new_list.id}/')
+        self.assertRedirects(response, '/lists/%s/' % (new_list.id,))
 
     def test_can_save_a_POST_request_to_an_existing_list(self):
         other_list = List.objects.create()
         correct_list = List.objects.create()
 
         self.client.post(
-            f'/lists/{correct_list.id}/add_item',
+            '/lists/%s/add_item' % (correct_list.id,),
             data={'item_text': 'A new item for an existing list'}
         )
 
@@ -104,16 +104,16 @@ class NewListTest(TestCase):
         correct_list = List.objects.create()
 
         response = self.client.post(
-            f'/lists/{correct_list.id}/add_item',
+            '/lists/%s/add_item' % (correct_list.id,),
             data={'item_text': 'A new item for an existing list'}
         )
 
-        self.assertRedirects(response, f'/lists/{correct_list.id}/')
+        self.assertRedirects(response, '/lists/%s/' % (correct_list.id,))
 
     def test_pass_correct_list_to_template(self):
         other_list = List.objects.create()
         correct_list = List.objects.create()
 
-        response = self.client.get(f'/lists/{correct_list.id}/')
+        response = self.client.get('/lists/%s/' % (correct_list.id,))
         self.assertEqual(response.context['list'], correct_list)
 
